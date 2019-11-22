@@ -25,20 +25,26 @@ export default props => {
         </div>
         <div className="media-content">
           <div className="content">
-            <button className="button is-text" onClick={() => props.toggleModal(props.job)}>
-              <strong>{props.job.title}</strong>&nbsp;<small>{props.job.company.name}</small>
+            <button
+              className="button is-text"
+              onClick={() => props.toggleModal(props.job)}
+            >
+              <strong>{props.job.title}</strong>&nbsp;
+              <small>{props.job.company.name}</small>
             </button>
             <p>{shortDescription()}</p>
           </div>
         </div>
         <div className="media-right">
-          <div className="level">
-            <div className="level-right">
-              <span className="icon has-text-danger">
-                <i className="fas fa-heart"></i>
-              </span>
-            </div>
-          </div>
+          <button
+            className="button is-success"
+            onClick={() => props.toggleFavorite(props.job)}
+          >
+            <span className="icon">
+              <i className={`${props.favorite ? "fas" : "far"} fa-heart`}></i>
+            </span>
+            <span>{props.favorite ? "Saved" : "Save"}</span>
+          </button>
         </div>
       </article>
     </div>
