@@ -10,22 +10,11 @@ export default function NavBar(props) {
       aria-label="main navigation"
     >
       <div className="navbar-brand">
-        <a className="navbar-item" href="#">
-          <img src={logo} />
-        </a>
-        <a
-          role="button"
-          className="navbar-burger burger"
-          aria-label="menu"
-          aria-expanded="false"
-          data-target="navbarBasicExample"
-        >
-          <span aria-hidden="true" />
-          <span aria-hidden="true" />
-          <span aria-hidden="true" />
-        </a>
+        <div className="navbar-item">
+          <img src={logo} alt="Mini Jobify" />
+        </div>
       </div>
-      <div id="navbarBasicExample" className="navbar-menu">
+      <div className="navbar-menu is-active">
         <div className="navbar-start">
           <div className="navbar-item">
             <SearchBar

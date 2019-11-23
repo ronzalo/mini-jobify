@@ -18,9 +18,9 @@ const Modal = ({ children, closeModal, modalState, title }) => {
           <div className="content">{children}</div>
         </section>
         <footer className="modal-card-foot">
-          <a className="button" onClick={() => closeModal(null)}>
+          <button className="button" onClick={() => closeModal(null)}>
             Cancel
-          </a>
+          </button>
         </footer>
       </div>
     </div>
