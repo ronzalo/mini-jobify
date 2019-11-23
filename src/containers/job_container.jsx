@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import NavBar from "../components/nav_bar";
 import JobBox from "../components/job_box";
 import Modal from "../components/modal";
+import { getFavoriteJobs, getJobs, postFavoriteJob } from "../api/services";
 
 export default class job_container extends Component {
   constructor(props) {
@@ -20,7 +21,7 @@ export default class job_container extends Component {
   }
 
   componentDidMount() {
-    fetch(process.env.REACT_APP_BACKEND_URL)
+    getFavoriteJobs()
       .then(response => response.json())
       .then(data => this.setState({ favoriteJobs: data }))
       .catch(error => console.error("Error:", error));
@@ -103,16 +104,21 @@ export default class job_container extends Component {
       );
     }
   }
-  searchHandle(q) {
-    if (q === "") {
+  
+  searchHandle(query) {
+    if (query === "") {
       return false;
     }
 
     this.setState({ isLoading: true });
-    fetch(process.env.REACT_APP_GETONBOARD_URL + q)
+    getJobs(query)
       .then(response => response.json())
       .then(data =>
-        this.setState({ jobList: data.jobs, searchText: q, isLoading: false })
+        this.setState({
+          jobList: data.jobs,
+          searchText: query,
+          isLoading: false
+        })
       )
       .catch(error => console.error("Error:", error));
   }
@@ -124,13 +130,7 @@ export default class job_container extends Component {
       metadata: job
     };
 
-    fetch(process.env.REACT_APP_BACKEND_URL, {
-      method: "POST",
-      body: JSON.stringify(data),
-      headers: {
-        "Content-Type": "application/json"
-      }
-    })
+    postFavoriteJob(data)
       .then(response => response.json())
       .then(data =>
         this.setState(state => {
@@ -152,6 +152,7 @@ export default class job_container extends Component {
       return { modalState: newState, currentJob: currentJob };
     });
   }
+
   render() {
     return (
       <div className="section">
