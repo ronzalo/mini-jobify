@@ -1,6 +1,6 @@
 import React from "react";
 
-export default props => {
+export default function JobBox(props) {
   const shortDescription = () => {
     const desc = [
       props.job.city,
@@ -35,7 +35,7 @@ export default props => {
             <p>{shortDescription()}</p>
           </div>
           <button
-            className="button is-success is-light is-hidden-desktop is-fullwidth"
+            className="button is-success is-light is-hidden-desktop is-fullwidth favorite"
             onClick={() => props.toggleFavorite(props.job)}
           >
             <span className="icon">
@@ -46,7 +46,7 @@ export default props => {
         </div>
         <div className="media-right is-hidden-touch">
           <button
-            className="button is-success is-light"
+            className="button is-success is-light favorite"
             onClick={() => props.toggleFavorite(props.job)}
           >
             <span className="icon">

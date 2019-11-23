@@ -69,18 +69,27 @@ export default class job_container extends Component {
           </div>
         );
       }
-      return this.state.jobList.map((job, index) => {
-        return (
-          <div key={index} className="tile is-child">
-            <JobBox
-              favorite={this.isFavorite(job)}
-              job={job}
-              toggleFavorite={this.toggleFavorite}
-              toggleModal={this.toggleModal}
-            />
+      return (
+        <div>
+          <div className="notification">
+            {this.state.searchText.length
+              ? `Results for ${this.state.searchText}`
+              : ""}
           </div>
-        );
-      });
+          {this.state.jobList.map((job, index) => {
+            return (
+              <div key={index} className="tile is-child">
+                <JobBox
+                  favorite={this.isFavorite(job)}
+                  job={job}
+                  toggleFavorite={this.toggleFavorite}
+                  toggleModal={this.toggleModal}
+                />
+              </div>
+            );
+          })}
+        </div>
+      );
     }
   }
 
@@ -104,7 +113,7 @@ export default class job_container extends Component {
       );
     }
   }
-  
+
   searchHandle(query) {
     if (query === "") {
       return false;
