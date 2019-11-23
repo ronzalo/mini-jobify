@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import SearchBar from "../components/search_bar";
+import NavBar from "../components/nav_bar";
 import JobBox from "../components/job_box";
 import Modal from "../components/modal";
 
@@ -90,7 +90,7 @@ export default class job_container extends Component {
         <Modal
           closeModal={this.toggleModal}
           modalState={this.state.modalState}
-          title={`${job.title} - ${job.seniority}`}
+          title={`${job.title} - ${job.seniority} - $${job.salary}`}
         >
           {this.iconsFor(job)}
           <h2>Functions</h2>
@@ -154,15 +154,17 @@ export default class job_container extends Component {
   }
   render() {
     return (
-      <div className="container">
-        <SearchBar
+      <div className="section">
+        <NavBar
           searchHandle={this.searchHandle}
           searchText={this.state.searchText}
         />
-        <div className="tile is-ancestor is-vertical is-12">
-          {this.jobList()}
+        <div className="container">
+          <div className="tile is-ancestor is-vertical is-12">
+            {this.jobList()}
+          </div>
+          {this.jobModal()}
         </div>
-        {this.jobModal()}
       </div>
     );
   }

@@ -4,7 +4,7 @@ export default props => {
   let textInput = React.createRef();
   return (
     <div className="field has-addons">
-      <div className="control">
+      <div className="control has-background-dark">
         <input
           className="input"
           type="text"
