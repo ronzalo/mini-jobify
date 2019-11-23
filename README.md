@@ -37,5 +37,7 @@ heroku create -b https://github.com/mars/create-react-app-buildpack.git
 git add .
 git commit -m "react-create-app on Heroku"
 git push heroku master
+heroku config:set REACT_APP_GETONBOARD_URL="https://www.getonbrd.com/search/jobs?q="
+heroku config:set REACT_APP_BACKEND_URL="https://onejobify.herokuapp.com/api/v1/favorite_jobs"
 heroku open
 ```
