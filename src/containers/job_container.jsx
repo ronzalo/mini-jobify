@@ -169,7 +169,7 @@ export default class job_container extends Component {
           searchHandle={this.searchHandle}
           searchText={this.state.searchText}
         />
-        <div className="container">
+        <div className="container has-padding-top-40-mobile">
           <div className="tile is-ancestor is-vertical is-12">
             {this.jobList()}
           </div>

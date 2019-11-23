@@ -9,7 +9,7 @@ const Modal = ({ children, closeModal, modalState, title }) => {
   return (
     <div className="modal is-active">
       <div className="modal-background" onClick={() => closeModal(null)} />
-      <div className="modal-card">
+      <div className="modal-card is-full-width-mobile is-half-width">
         <header className="modal-card-head">
           <p className="modal-card-title">{title}</p>
           <button className="delete" onClick={() => closeModal(null)} />
@@ -33,4 +33,4 @@ Modal.propTypes = {
   title: PropTypes.string
 };
 
-export default Modal
+export default Modal;
