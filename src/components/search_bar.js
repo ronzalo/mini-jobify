@@ -1,6 +1,6 @@
 import React from "react";
 
-export default props => {
+export default function SearchBar(props) {
   let textInput = React.createRef();
   return (
     <div className="field has-addons">
