@@ -21,8 +21,8 @@ I just followed the instructions and built the simplest react app I could do.
 ## Installation
 
 ```shell
-git clone https://github.com/ronzalo/mini_jobify
-cd mini_jobify
+git clone https://github.com/ronzalo/mini-jobify
+cd mini-jobify
 # Setup env variables
 cp .env.example .env
 yarn install
