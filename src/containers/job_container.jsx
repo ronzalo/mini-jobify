@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import NavBar from "../components/nav_bar";
 import JobBox from "../components/job_box";
 import Modal from "../components/modal";
-import { getFavoriteJobs, getJobs, postFavoriteJob } from "../api/services";
+import { getFavoriteJobs, getJobs, postFavoriteJob, removeFavoriteJob } from "../api/services";
 
 export default class job_container extends Component {
   constructor(props) {
@@ -30,7 +30,7 @@ export default class job_container extends Component {
   isFavorite(job) {
     return (
       this.state.favoriteJobs.length &&
-      this.state.favoriteJobs.some(fav => fav.slug === job.id)
+      this.state.favoriteJobs.find(fav => fav.slug === job.id)
     );
   }
 
@@ -139,18 +139,35 @@ export default class job_container extends Component {
       metadata: job
     };
 
-    postFavoriteJob(data)
-      .then(response => response.json())
-      .then(data =>
-        this.setState(state => {
-          const favoriteJobs = [...state.favoriteJobs, data];
+    let favoriteJob = this.isFavorite(job)
 
-          return {
-            favoriteJobs
-          };
-        })
-      )
-      .catch(error => console.error("Error:", error));
+    if (favoriteJob) {
+      removeFavoriteJob(favoriteJob.id)
+        .then(() =>
+          this.setState(state => {
+            const favoriteJobs = state.favoriteJobs.filter(fav => fav.id !== favoriteJob.id)
+
+            return {
+              favoriteJobs
+            };
+          })
+        )
+        .catch(error => console.error("Error:", error));
+    } else {
+      postFavoriteJob(data)
+        .then(response => response.json())
+        .then(data =>
+          this.setState(state => {
+            const favoriteJobs = [...state.favoriteJobs, data];
+  
+            return {
+              favoriteJobs
+            };
+          })
+        )
+        .catch(error => console.error("Error:", error));
+    }
+
   }
 
   toggleModal(job) {

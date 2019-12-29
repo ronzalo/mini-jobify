@@ -9,5 +9,13 @@ const postFavoriteJob = data => {
     }
   });
 };
+const removeFavoriteJob = id => {
+  return fetch(`${process.env.REACT_APP_BACKEND_URL}/${id}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json"
+    }
+  });
+};
 
-export { getFavoriteJobs, getJobs, postFavoriteJob };
+export { getFavoriteJobs, getJobs, postFavoriteJob, removeFavoriteJob };
